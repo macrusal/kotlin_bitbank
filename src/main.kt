@@ -1,14 +1,10 @@
 fun main() {
     println("Bem vindo ao ByteBank")
 
-    val contaMarcelo = Conta()
-    contaMarcelo.titular = "Marcelo da Cruz Salvador"
-    contaMarcelo.numeroConta = 1001
+    val contaMarcelo = Conta("Marcelo da Cruz Salvador", 1001)
     contaMarcelo.deposita(1500.0)
 
-    val contaVictor = Conta()
-    contaVictor.titular = "Victor Hugo Salvador"
-    contaVictor.numeroConta = 1002
+    val contaVictor = Conta("Victor Hugo Salvador", 1002)
     contaVictor.deposita(1100.0)
 
     println("Deposito - Creditando valores nas contas")
@@ -42,7 +38,7 @@ fun main() {
     println()
 
     println("Transfere - Transferindo valores da conta do Marcelo para a conta do Victor")
-    if(contaMarcelo.transfere(8300.50, contaVictor)) {
+    if (contaMarcelo.transfere(8300.50, contaVictor)) {
         println("Sucesso - Trnasferencia realizada.")
     } else {
         println("Falha - Trnasferencia não realizada.")
@@ -60,15 +56,13 @@ fun main() {
 //    testaCondicao(saldo)
 }
 
-class Conta {
-
-    var titular = ""
-    var numeroConta = 0
-    var saldo  = 0.0
+class Conta(var titular: String,
+            var numeroConta: Int) {
+    var saldo = 0.0
         private set
 
     fun deposita(valor: Double) {
-        if(valor > 0) {
+        if (valor > 0) {
             saldo += valor
         }
     }
@@ -79,7 +73,7 @@ class Conta {
         }
     }
 
-    fun transfere(valor: Double, destino: Conta) : Boolean{
+    fun transfere(valor: Double, destino: Conta): Boolean {
         if (saldo >= valor) {
             saldo -= valor
             destino.deposita(valor)
