@@ -1,10 +1,12 @@
 fun main() {
     println("Bem vindo ao ByteBank")
 
-    val contaMarcelo = Conta("Marcelo da Cruz Salvador", 1001)
+    //O uso de label permite mudar a ordem de entrada de valores no construtor da classe
+    val contaMarcelo = Conta(titular = "Marcelo da Cruz Salvador", numeroConta = 1001)
     contaMarcelo.deposita(1500.0)
 
-    val contaVictor = Conta("Victor Hugo Salvador", 1002)
+    //O uso de label permite mudar a ordem de entrada de valores no construtor da classe
+    val contaVictor = Conta(numeroConta = 1002, titular = "Victor Hugo Salvador")
     contaVictor.deposita(1100.0)
 
     println("Deposito - Creditando valores nas contas")
@@ -56,8 +58,9 @@ fun main() {
 //    testaCondicao(saldo)
 }
 
-class Conta(var titular: String,
-            var numeroConta: Int) {
+class Conta(val titular: String,
+            val numeroConta: Int
+) {
     var saldo = 0.0
         private set
 
