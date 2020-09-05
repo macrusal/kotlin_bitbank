@@ -4,12 +4,12 @@ fun main() {
     val contaMarcelo = Conta()
     contaMarcelo.titular = "Marcelo da Cruz Salvador"
     contaMarcelo.numeroConta = 1001
-    contaMarcelo.setSaldo(1500.0)
+    contaMarcelo.deposita(1500.0)
 
     val contaVictor = Conta()
     contaVictor.titular = "Victor Hugo Salvador"
     contaVictor.numeroConta = 1002
-    contaVictor.setSaldo(1100.0)
+    contaVictor.deposita(1100.0)
 
     println("Deposito - Creditando valores nas contas")
     contaMarcelo.deposita(250.0)
@@ -18,11 +18,11 @@ fun main() {
     println("--%%%--")
     println(contaMarcelo.titular)
     println(contaMarcelo.numeroConta)
-    println(contaMarcelo.getSaldo())
+    println(contaMarcelo.saldo)
     println()
     println(contaVictor.titular)
     println(contaVictor.numeroConta)
-    println(contaVictor.getSaldo())
+    println(contaVictor.saldo)
 
     println()
 
@@ -33,11 +33,11 @@ fun main() {
     println("--%%%--")
     println(contaMarcelo.titular)
     println(contaMarcelo.numeroConta)
-    println(contaMarcelo.getSaldo())
+    println(contaMarcelo.saldo)
     println()
     println(contaVictor.titular)
     println(contaVictor.numeroConta)
-    println(contaVictor.getSaldo())
+    println(contaVictor.saldo)
 
     println()
 
@@ -51,11 +51,11 @@ fun main() {
     println("--%%%--")
     println(contaMarcelo.titular)
     println(contaMarcelo.numeroConta)
-    println(contaMarcelo.getSaldo())
+    println(contaMarcelo.saldo)
     println()
     println(contaVictor.titular)
     println(contaVictor.numeroConta)
-    println(contaVictor.getSaldo())
+    println(contaVictor.saldo)
 
 //    testaCondicao(saldo)
 }
@@ -64,10 +64,13 @@ class Conta {
 
     var titular = ""
     var numeroConta = 0
-    private var saldo  = 0.0
+    var saldo  = 0.0
+        private set
 
     fun deposita(valor: Double) {
-        saldo += valor
+        if(valor > 0) {
+            saldo += valor
+        }
     }
 
     fun saca(valor: Double) {
@@ -83,15 +86,5 @@ class Conta {
             return true
         }
         return false
-    }
-
-    fun getSaldo(): Double {
-        return saldo
-    }
-
-    fun setSaldo(valor: Double) {
-        if(valor > 0) {
-            saldo = valor
-        }
     }
 }
